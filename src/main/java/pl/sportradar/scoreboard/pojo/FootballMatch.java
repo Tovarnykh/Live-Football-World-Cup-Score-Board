@@ -12,6 +12,14 @@ public class FootballMatch {
     private LocalDateTime startTime;
     
     public FootballMatch(String homeTeam, String awayTeam){
+        
+        if (homeTeam == null || homeTeam.trim().isEmpty()) {
+            throw new IllegalArgumentException("Home team name cannot be null or empty.");
+        }
+        if (awayTeam == null || awayTeam.trim().isEmpty()) {
+            throw new IllegalArgumentException("Away team name cannot be null or empty.");
+        }
+        
         this.homeTeam = homeTeam;
         this.awayTeam = awayTeam;
         this.homeScore = 0;
@@ -40,6 +48,10 @@ public class FootballMatch {
     }
 
     public synchronized void setHomeScore(int homeScore) {
+        if (homeScore < 0) {
+            throw new IllegalArgumentException("Home score cannot be negative.");
+        }
+        
         this.homeScore = homeScore;
     }
 
@@ -48,6 +60,10 @@ public class FootballMatch {
     }
 
     public synchronized void setAwayScore(int awayScore) {
+        if (awayScore < 0) {
+            throw new IllegalArgumentException("Away score cannot be negative.");
+        }
+        
         this.awayScore = awayScore;
     }
 
